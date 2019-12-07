@@ -11,7 +11,7 @@ namespace PartyPlanning.UT.Events
         [Fact]
         public void NotCreateEventWithNoOrganizer()
         {
-            var createdEvent = new Event(new EventId());
+            var createdEvent = new EventAgregate(new EventId());
             var invalidOrganizer = default (Profile);
             var eventDate = DateTime.Now.AddDays(7);
             Assert.Throws<InvalidOperationException>(() => 
@@ -20,7 +20,7 @@ namespace PartyPlanning.UT.Events
         [Fact]
         public void NotCreateEventOnPastDate()
         {
-            var createdEvent = new Event(new EventId());
+            var createdEvent = new EventAgregate(new EventId());
             var eventOrganizer = new Profile(new ProfileId());
             var eventDate = DateTime.Now.AddDays(-1);
             Assert.Throws<InvalidOperationException>(() => 
@@ -29,11 +29,17 @@ namespace PartyPlanning.UT.Events
         [Fact]
         public void CreateValidEvent()
         {
-            var createdEvent = new Event(new EventId());
+            EventAgregate createdEvent = GetValidEvent();
+            Assert.NotNull(createdEvent);
+        }
+
+        private static EventAgregate GetValidEvent()
+        {
+            var createdEvent = new EventAgregate(new EventId());
             var eventOrganizer = new Profile(new ProfileId());
             var eventDate = DateTime.Now.AddDays(7);
             createdEvent.Create(eventDate, eventOrganizer);
-            Assert.NotNull(createdEvent);
+            return createdEvent;
         }
 
         [Fact] 
@@ -43,11 +49,18 @@ namespace PartyPlanning.UT.Events
         }
 
         [Fact]
-        public void MustUpdateCreatingEvent()
+        public void MustNotUpdateCreatingEvent()
         {
-            var createdEvent = new Event(new EventId());
-            createdEvent.UpdateDate(DateTime.Today.AddDays(1));
-            Assert.Throws<ArgumentException>(() => new CreatedOrDraftingRule(null));
+            var createdEvent = new EventAgregate(new EventId());
+            Assert.Throws<InvalidOperationException>(() => 
+                createdEvent.UpdateDate(DateTime.Today.AddDays(1)));
+        }
+        [Fact]
+        public void NotAllowNonPostiveMaxAttendees()
+        {
+            var createdEvent = GetValidEvent();
+            Assert.Throws<InvalidOperationException>(()=> 
+                createdEvent.SetLimitOfCapacity(0));
         }
     }
 }

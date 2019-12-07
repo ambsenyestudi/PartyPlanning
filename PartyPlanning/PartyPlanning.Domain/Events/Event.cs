@@ -1,69 +1,39 @@
-﻿using PartyPlanning.Domain.Events.Create;
-using PartyPlanning.Domain.Events.Update;
-using PartyPlanning.Domain.Users;
+﻿using PartyPlanning.Domain.Users;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace PartyPlanning.Domain.Events
 {
-    public enum EventState
+    public enum EventStatus
     {
         None, Createing, Created, Drafting, PendingAproval, Published
     }
     public class Event
     {
-
-        public DateTime Date { get; private set; }
         public EventId EventId { get; }
-        public EventState Status { get; private set; }
-        public List<ICreateEventRule> CreateRules { get; private set;}
-        public Profile Organizer { get; private set; }
-        public List<IUpdateEventRule> UpdateRules { get; private set; }
-
+        public EventStatus Status { get; set; }
+        public DateTime Date { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public bool HasLimitedCapacity { get => MaxAttendants > 0; }
+        public int MaxAttendants { get; private set; }
+        public Profile Organizer { get; set; }
+        public List<Attendee> Attendees { get; set; }
         public Event(EventId eventId)
         {
-            this.EventId = eventId;
-            this.Status = EventState.Createing;
-            SetCreateRules();
-            SetUpdateRules();
+            EventId = eventId;
+            this.Status = EventStatus.Createing;
         }
 
-        private void SetCreateRules()
+        public void SetMaxCapacity(int maxCapacity)
         {
-            CreateRules = new List<ICreateEventRule>
-            {
-                new MustHaveOrganizerRule(this),
-                new MustBeFutureDate(this)
-            };
-        }
-        private void SetUpdateRules()
-        {
-            UpdateRules = new List<IUpdateEventRule>
-            {
-                new CreatedOrDraftingRule(this)
-            };
+            MaxAttendants = maxCapacity;
         }
 
-        public void Create(DateTime date, Profile organizer)
+        public void RemoveMaxCapcity()
         {
-            Date = date;
-            Organizer = organizer;
-            if(CreateRules.Any(x => !x.IsValid())) 
-            {
-                throw new InvalidOperationException("Create Rules not met");
-            }
-                
-            Status = EventState.Created;
-        }
-
-        public void UpdateDate(DateTime dateTime)
-        {
-            if(UpdateRules.Any(x=> x.IsValid()))
-            {
-                throw new InvalidOperationException("Update Rules not met");
-            }
+            MaxAttendants = 0;
         }
     }
 }

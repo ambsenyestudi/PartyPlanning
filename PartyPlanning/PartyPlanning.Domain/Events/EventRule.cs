@@ -10,7 +10,7 @@ namespace PartyPlanning.Domain.Events
             if (evalutaingEvent == null)
             {
                 throw new ArgumentException(
-                    $"Can not create {this.GetType()} can not be created when {typeof(Event)}is null");
+                    $"Can not create {this.GetType()} can not be created when {typeof(EventAgregate)}is null");
             }
             this.evalutaingEvent = evalutaingEvent;
         }

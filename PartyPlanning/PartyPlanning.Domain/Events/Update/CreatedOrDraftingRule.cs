@@ -7,7 +7,7 @@
         }
 
         public bool IsValid() =>
-            evalutaingEvent.Status == EventState.Created ||
-            evalutaingEvent.Status == EventState.Drafting;
+            evalutaingEvent.Status == EventStatus.Created ||
+            evalutaingEvent.Status == EventStatus.Drafting;
     }
 }
