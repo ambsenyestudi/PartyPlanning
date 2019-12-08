@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PartyPlanning.Domain.Events
+namespace PartyPlanning.Domain.Events.Rules
 {
     public class EventRule
     {

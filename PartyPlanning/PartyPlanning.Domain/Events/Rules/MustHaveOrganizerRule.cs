@@ -1,12 +1,12 @@
-﻿namespace PartyPlanning.Domain.Events.Create
+﻿namespace PartyPlanning.Domain.Events.Rules
 {
-    public class MustHaveOrganizerRule:EventRule,ICreateEventRule
+    public class MustHaveOrganizerRule:EventRule,IRule
     {
         public MustHaveOrganizerRule(Event evalutaingEvent) : base(evalutaingEvent)
         { 
         }
 
-        public bool IsValid() =>
+        public bool IsCompliant() =>
             evalutaingEvent.Organizer != null;
     }
 }

@@ -16,7 +16,7 @@ namespace PartyPlanning.Domain.Events
         public DateTime Date { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public bool HasLimitedCapacity { get => MaxAttendants > 0; }
+        public bool HasLimitedCapacity { get; private set; }
         public int MaxAttendants { get; private set; }
         public Profile Organizer { get; set; }
         public List<Attendee> Attendees { get; set; }
@@ -34,6 +34,12 @@ namespace PartyPlanning.Domain.Events
         public void RemoveMaxCapcity()
         {
             MaxAttendants = 0;
+            HasLimitedCapacity = false;
+        }
+
+        public void ActivateCapacityLimit()
+        {
+            HasLimitedCapacity = true;
         }
     }
 }

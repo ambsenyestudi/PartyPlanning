@@ -1,4 +1,6 @@
 ﻿using PartyPlanning.Domain.Events.Create;
+using PartyPlanning.Domain.Events.Rules;
+using PartyPlanning.Domain.Events.Submit;
 using PartyPlanning.Domain.Events.Update;
 using PartyPlanning.Domain.Users;
 using System;
@@ -12,45 +14,49 @@ namespace PartyPlanning.Domain.Events
     public class EventAgregate
     {
         #region Rules
-        public List<ICreateEventRule> CreateRules { get; private set; }
-        public List<IUpdateEventRule> UpdateRules { get; private set; }
+        public CreateRuleSet CreateRuleSet { get; private set; }
+        public UpdateRuleSet UpdateRuleSet { get; private set; }
+        public SubmitRuleSet SubmitRuleSet { get; private set; }
+
         #endregion Rules
-
         public Event Event { get;  private set; }
-
 
         public EventAgregate(EventId eventId)
         {
             this.Event = new Event(eventId);
-            SetCreateRules();
+            SetCreateRuleSet();
             SetUpdateRules();
+            SetSubmitRuleSet();
         }
 
-        private void SetCreateRules()
+        private void SetCreateRuleSet()
         {
-            CreateRules = new List<ICreateEventRule>
-            {
-                new MustHaveOrganizerRule(Event),
-                new MustBeFutureDate(Event)
-            };
+            CreateRuleSet = RuleCompositor.StartComposing()
+                .AddMustHaveOrganizerRule(Event)
+                .AddMustBeFutureDate(Event)
+                .BuildCreate();
         }
         private void SetUpdateRules()
         {
-            UpdateRules = new List<IUpdateEventRule>
-            {
-                new CreatedOrDraftingRule(Event),
-                new PostiveMaxCapacityRule(Event)
-            };
+            UpdateRuleSet = RuleCompositor.StartComposing()
+                .AddPossibleUpdateStatus(Event)
+                .AddNoLimitOrPostiveMaxCapacityRule(Event)
+                .BuildUpdate();
+        }
+        private void SetSubmitRuleSet()
+        {
+            SubmitRuleSet = RuleCompositor.StartComposing()
+                .AddDraftingRule(Event)
+                .AddHasValidName(Event)
+                .AddHasValidDescription(Event)
+                .BuildSubmit();
         }
 
         public void Create(DateTime date, Profile organizer)
         {
             Event.Date = date;
             Event.Organizer = organizer;
-            if (CreateRules.Any(x => !x.IsValid())) 
-            {
-                throw new InvalidOperationException("Create Rules not met");
-            }
+            EvaluateRuleSet(CreateRuleSet);
             Event.Status = EventStatus.Created;
         }
 
@@ -60,24 +66,32 @@ namespace PartyPlanning.Domain.Events
         public void UpdateName(string name) =>
             UpdateInfo(() => Event.Name = name);
         
-        public void UpdateText(string description) =>
+        public void UpdateDescription(string description) =>
             UpdateInfo(() => Event.Description = description);
         public void SetLimitOfCapacity(int maxCapacity) =>
-            UpdateInfo(() => Event.SetMaxCapacity(maxCapacity));
+            UpdateInfo(() => {
+                Event.ActivateCapacityLimit();
+                Event.SetMaxCapacity(maxCapacity);
+                });
 
         public void RemoveLimitOfCapacity() =>
             UpdateInfo(() => Event.RemoveMaxCapcity());
         public void UpdateInfo(Action action)
         {
             action.Invoke();
-            if (UpdateRules.Any(x => !x.IsValid()))
+            EvaluateRuleSet(UpdateRuleSet);
+            Event.Status = EventStatus.Drafting;
+        }
+        public void SubmitForPublishing()
+        {
+            EvaluateRuleSet(SubmitRuleSet);
+            Event.Status = EventStatus.PendingAproval;
+        }
+        public void EvaluateRuleSet(IRuleSet ruleSet)
+        {
+            if (!ruleSet.IsCompliant())
             {
-                throw new InvalidOperationException("Update Rules not met");
-            }
-            
-            if (Event.Status != EventStatus.Drafting)
-            {
-                Event.Status = EventStatus.Drafting;
+                throw new InvalidOperationException($"{ruleSet.GetType().Name} Rules not met");
             }
         }
     }
