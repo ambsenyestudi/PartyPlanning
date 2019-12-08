@@ -1,0 +1,63 @@
+2019-12-08 11:42:20.182 +01:00 [Information] Now listening on: "https://localhost:5001"
+2019-12-08 11:42:20.222 +01:00 [Information] Now listening on: "http://localhost:5000"
+2019-12-08 11:42:20.224 +01:00 [Information] Application started. Press Ctrl+C to shut down.
+2019-12-08 11:42:20.225 +01:00 [Information] Hosting environment: "Development"
+2019-12-08 11:42:20.226 +01:00 [Information] Content root path: "C:\Users\AdriF\source\repos\PartyPlanning\PartyPlanning\PartyPlanning.API"
+2019-12-08 11:43:27.796 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:5000/api/events  
+2019-12-08 11:43:27.865 +01:00 [Information] Request finished in 71.887ms 307 
+2019-12-08 11:43:57.888 +01:00 [Information] Now listening on: "https://localhost:5001"
+2019-12-08 11:43:57.931 +01:00 [Information] Now listening on: "http://localhost:5000"
+2019-12-08 11:43:57.933 +01:00 [Information] Application started. Press Ctrl+C to shut down.
+2019-12-08 11:43:57.934 +01:00 [Information] Hosting environment: "Development"
+2019-12-08 11:43:57.936 +01:00 [Information] Content root path: "C:\Users\AdriF\source\repos\PartyPlanning\PartyPlanning\PartyPlanning.API"
+2019-12-08 11:43:57.965 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:5000/api/events  
+2019-12-08 11:43:57.988 +01:00 [Information] Executing endpoint '"PartyPlanning.API.Controllers.EventsController.Get (PartyPlanning.API)"'
+2019-12-08 11:43:58.032 +01:00 [Information] Route matched with "{action = \"Get\", controller = \"Events\"}". Executing controller action with signature "System.Collections.Generic.IEnumerable`1[System.String] Get()" on controller "PartyPlanning.API.Controllers.EventsController" ("PartyPlanning.API").
+2019-12-08 11:43:58.043 +01:00 [Information] Executed action "PartyPlanning.API.Controllers.EventsController.Get (PartyPlanning.API)" in 3.7095000000000002ms
+2019-12-08 11:43:58.046 +01:00 [Information] Executed endpoint '"PartyPlanning.API.Controllers.EventsController.Get (PartyPlanning.API)"'
+2019-12-08 11:43:58.140 +01:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'Serilog.ILogger' while attempting to activate 'PartyPlanning.API.Controllers.EventsController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-12-08 11:43:58.175 +01:00 [Information] Request finished in 211.1647ms 500 text/plain
+2019-12-08 11:51:21.357 +01:00 [Debug] Failed to locate the development https certificate at 'null'.
+2019-12-08 11:51:21.417 +01:00 [Debug] Using development certificate: "CN=localhost" (Thumbprint: "ADA4FC738F62E314F4408E98A24C242D201D9B1F")
+2019-12-08 11:51:26.800 +01:00 [Debug] Wildcard detected, all requests with hosts will be allowed.
+2019-12-08 11:51:26.820 +01:00 [Debug] 1 candidate(s) found for the request path '"/api/events"'
+2019-12-08 11:51:26.822 +01:00 [Debug] Endpoint '"PartyPlanning.API.Controllers.EventsController.Get (PartyPlanning.API)"' with route pattern '"api/Events"' is valid for the request path '"/api/events"'
+2019-12-08 11:51:26.823 +01:00 [Debug] Request matched endpoint '"PartyPlanning.API.Controllers.EventsController.Get (PartyPlanning.API)"'
+2019-12-08 11:51:26.825 +01:00 [Information] Executing endpoint '"PartyPlanning.API.Controllers.EventsController.Get (PartyPlanning.API)"'
+2019-12-08 11:51:26.832 +01:00 [Debug] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexTypeModelBinderProvider"]
+2019-12-08 11:51:26.866 +01:00 [Information] Route matched with "{action = \"Get\", controller = \"Events\"}". Executing controller action with signature "System.Collections.Generic.IEnumerable`1[System.String] Get()" on controller "PartyPlanning.API.Controllers.EventsController" ("PartyPlanning.API").
+2019-12-08 11:51:26.866 +01:00 [Debug] Execution plan of "authorization" filters (in the following order): ["None"]
+2019-12-08 11:51:26.866 +01:00 [Debug] Execution plan of "resource" filters (in the following order): ["None"]
+2019-12-08 11:51:26.866 +01:00 [Debug] Execution plan of "action" filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)", "Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2019-12-08 11:51:26.866 +01:00 [Debug] Execution plan of "exception" filters (in the following order): ["None"]
+2019-12-08 11:51:26.866 +01:00 [Debug] Execution plan of "result" filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2019-12-08 11:51:26.867 +01:00 [Debug] Executing controller factory for controller "PartyPlanning.API.Controllers.EventsController" ("PartyPlanning.API")
+2019-12-08 11:51:26.872 +01:00 [Information] Executed action "PartyPlanning.API.Controllers.EventsController.Get (PartyPlanning.API)" in 1.5643ms
+2019-12-08 11:51:26.873 +01:00 [Information] Executed endpoint '"PartyPlanning.API.Controllers.EventsController.Get (PartyPlanning.API)"'
+2019-12-08 11:51:26.874 +01:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'Serilog.ILogger' while attempting to activate 'PartyPlanning.API.Controllers.EventsController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)

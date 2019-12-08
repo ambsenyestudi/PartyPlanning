@@ -3,9 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyPlanning.Domain", "PartyPlanning.Domain\PartyPlanning.Domain.csproj", "{9C311EF9-2417-492D-8BF3-368F68D56580}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyPlanning.Domain", "PartyPlanning.Domain\PartyPlanning.Domain.csproj", "{9C311EF9-2417-492D-8BF3-368F68D56580}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyPlanning.UT", "PartyPlanning.UT\PartyPlanning.UT.csproj", "{FDD4AD5E-5A9B-4FA2-AB92-DB974AEA21DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyPlanning.UT", "PartyPlanning.UT\PartyPlanning.UT.csproj", "{FDD4AD5E-5A9B-4FA2-AB92-DB974AEA21DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyPlanning.API", "PartyPlanning.API\PartyPlanning.API.csproj", "{F33E002B-F910-4A1B-8309-EA2DB5D93DE0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8A5AA318-0695-42D0-A423-83E28ABD0C0F}"
+	ProjectSection(SolutionItems) = preProject
+		NugetUsage.md = NugetUsage.md
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyPlanning.Core", "PartyPlanning.Core\PartyPlanning.Core.csproj", "{C1BB825A-248A-4847-8D9D-8F28890A5650}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +31,14 @@ Global
 		{FDD4AD5E-5A9B-4FA2-AB92-DB974AEA21DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDD4AD5E-5A9B-4FA2-AB92-DB974AEA21DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDD4AD5E-5A9B-4FA2-AB92-DB974AEA21DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F33E002B-F910-4A1B-8309-EA2DB5D93DE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F33E002B-F910-4A1B-8309-EA2DB5D93DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F33E002B-F910-4A1B-8309-EA2DB5D93DE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F33E002B-F910-4A1B-8309-EA2DB5D93DE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1BB825A-248A-4847-8D9D-8F28890A5650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1BB825A-248A-4847-8D9D-8F28890A5650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1BB825A-248A-4847-8D9D-8F28890A5650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1BB825A-248A-4847-8D9D-8F28890A5650}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
